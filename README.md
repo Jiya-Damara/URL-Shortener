@@ -266,14 +266,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Link expiration
 - [ ] Password protection
 
-## 📞 Support
-
-- 🐛 [Report bugs](https://github.com/yourusername/url-shortener/issues)
-- 💡 [Request features](https://github.com/yourusername/url-shortener/issues)
-- 📧 [Contact maintainer](mailto:your-email@example.com)
-
----
-
 ⭐ **Star this repository if you found it helpful!**
 
-Made with ❤️ by [Your Name](https://github.com/yourusername)
+Made with ❤️ by [Jiya Damara](https://github.com/Jiya-Damara)
