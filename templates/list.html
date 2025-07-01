@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Shortened URLs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .urls-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .urls-table th,
+        .urls-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .urls-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .urls-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .short-code {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 5px 8px;
+            border-radius: 4px;
+            color: #495057;
+        }
+
+        .original-url {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .stats {
+            text-align: center;
+        }
+
+        .click-count {
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .no-urls {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin: 40px 0;
+        }
+
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .urls-table {
+                font-size: 14px;
+            }
+            
+            .urls-table th,
+            .urls-table td {
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+        <h1>📊 All Shortened URLs</h1>
+        
+        {% if urls %}
+            <table class="urls-table">
+                <thead>
+                    <tr>
+                        <th>Short Code</th>
+                        <th>Original URL</th>
+                        <th>Created</th>
+                        <th>Clicks</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for url in urls %}
+                    <tr>
+                        <td>
+                            <span class="short-code">{{ url.short_code }}</span>
+                        </td>
+                        <td>
+                            <div class="original-url" title="{{ url.original_url }}">
+                                <a href="{{ url.original_url }}" target="_blank">{{ url.original_url }}</a>
+                            </div>
+                        </td>
+                        <td>{{ url.created_at }}</td>
+                        <td class="stats">
+                            <span class="click-count">{{ url.click_count }}</span>
+                        </td>
+                        <td>
+                            <button class="copy-btn" onclick="copyShortUrl('{{ request.host_url }}{{ url.short_code }}')">
+                                Copy
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="no-urls">
+                <p>No URLs have been shortened yet.</p>
+                <a href="/">Create your first short URL</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function copyShortUrl(url) {
+            navigator.clipboard.writeText(url).then(function() {
+                // Find the button that was clicked
+                const buttons = document.querySelectorAll('.copy-btn');
+                buttons.forEach(btn => {
+                    if (btn.textContent === 'Copy') {
+                        btn.textContent = 'Copied!';
+                        setTimeout(() => {
+                            btn.textContent = 'Copy';
+                        }, 2000);
+                    }
+                });
+            }).catch(function(err) {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
