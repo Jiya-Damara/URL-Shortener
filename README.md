@@ -18,17 +18,17 @@ A modern, efficient URL shortener built with Python and Flask, featuring Base62 
 - ⚡ **Fast & Lightweight**: Minimal dependencies, maximum performance
 - 🚀 **Production Ready**: Easy deployment to Heroku, Railway, Render, or VPS
 
-[## 🎮 Live Demo]: #
+## 🎮 Live Demo
 
-[Try it out: [your-demo-url.herokuapp.com](https://your-demo-url.herokuapp.com)]: #
+Try it out: [your-demo-url.herokuapp.com](https://your-demo-url.herokuapp.com)
 
-[## 📸 Screenshots
+## 📸 Screenshots
 
 ### Web Interface
 ![URL Shortener Interface](screenshots/interface.png)
 
 ### Analytics Dashboard
-![Analytics Dashboard](screenshots/analytics.png)] #
+![Analytics Dashboard](screenshots/analytics.png)
 
 ## 🚀 Quick Start
 
