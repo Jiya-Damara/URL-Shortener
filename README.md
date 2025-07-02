@@ -22,13 +22,13 @@ A modern, efficient URL shortener built with Python and Flask, featuring Base62 
 
 [Try it out: [your-demo-url.herokuapp.com](https://your-demo-url.herokuapp.com)]: #
 
-## 📸 Screenshots
+[## 📸 Screenshots
 
 ### Web Interface
 ![URL Shortener Interface](screenshots/interface.png)
 
 ### Analytics Dashboard
-![Analytics Dashboard](screenshots/analytics.png)
+![Analytics Dashboard](screenshots/analytics.png)] #
 
 ## 🚀 Quick Start
 
